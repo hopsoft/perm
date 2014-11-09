@@ -14,6 +14,8 @@ Incredibly simple permission management i.e. authorization.
 gem install perm
 ```
 
+#### Setup
+
 We'll use a contrived example of users & posts to demonstrate permission management.
 
 _This example uses [Roleup](https://github.com/hopsoft/roleup) for simple role management & verification, but Roleup is not required._
