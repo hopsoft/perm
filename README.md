@@ -10,6 +10,8 @@ gem install perm
 
 We'll use a contrived example of users & posts to demonstrate permission management.
 
+_Note that the user class includes `Roleup::HasRoles`_
+
 ```ruby
 class User
   include Roleup::HasRoles
@@ -21,8 +23,6 @@ class User
 end
 ```
 
-__Note that the user class includes `Roleup::HasRoles`__
-
 ```ruby
 class Post
   attr_accessor :user, :title, :published
@@ -30,7 +30,8 @@ end
 ```
 
 We also need an authorizer to manage permissions.
-__Authorizors wrap users & add behavior to them.__
+
+_Authorizors wrap users & add behavior to them._
 
 ```ruby
 class PostAuthorizer < Perm::Authorizer
