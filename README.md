@@ -33,7 +33,6 @@ Authorizors wrap users & add behavior to them.
 
 ```ruby
 class PostAuthorizer < Perm::Authorizer
-
   def can_read?(post)
     return true if user.has_one_role?(:admin, :editor)
     return true if user == post.user
@@ -49,7 +48,6 @@ class PostAuthorizer < Perm::Authorizer
     return true if user.has_role?(:admin)
     user == post.user
   end
-
 end
 ```
 
@@ -69,26 +67,29 @@ beth.roles = [:writer]
 drew = User.new
 
 # create a post
-post = Post.new("Authorization made easy")
+post = Post.new
+post.title = "Authorization made easy"
 post.user = beth
 
-# wrap each user with a post authorizer & check permissions
+# wrap each user with an authorizer
 mary = PostAuthorizer.new(mary)
+john = PostAuthorizer.new(john)
+beth = PostAuthorizer.new(beth)
+drew = PostAuthorizer.new(drew)
+
+# check permissions
 mary.can_read?(post) # => true
 mary.can_update?(post) # => true
 mary.can_delete?(post) # => true
 
-john = PostAuthorizer.new(john)
 john.can_read?(post) # => true
 john.can_update?(post) # => true
 john.can_delete?(post) # => false
 
-beth = PostAuthorizer.new(beth)
 beth.can_read?(post) # => true
 beth.can_update?(post) # => true
 beth.can_delete?(post) # => true
 
-drew = PostAuthorizer.new(drew)
 drew.can_read?(post) # => false
 drew.can_update?(post) # => false
 drew.can_delete?(post) # => false
