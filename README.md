@@ -2,6 +2,11 @@
 
 Incredibly simple permission management.
 
+[![Code Climate](https://codeclimate.com/github/hopsoft/perm/badges/gpa.svg)](https://codeclimate.com/github/hopsoft/perm)
+[![Travis CI](https://travis-ci.org/hopsoft/perm.svg)](https://travis-ci.org/hopsoft/perm)
+[![Coverage Status](https://img.shields.io/coveralls/hopsoft/perm.svg)](https://coveralls.io/r/hopsoft/perm?branch=master)
+[![Lines of Code](http://img.shields.io/badge/loc-29-brightgreen.svg)](http://blog.codinghorror.com/the-best-code-is-no-code-at-all/)
+
 ## Quickstart
 
 ```sh
