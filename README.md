@@ -1,11 +1,12 @@
 # Perm
 
-Incredibly simple permission management.
+Incredibly simple permission management i.e. authorization.
 
+[![Lines of Code](http://img.shields.io/badge/loc-29-brightgreen.svg)](http://blog.codinghorror.com/the-best-code-is-no-code-at-all/)
+[![Dependency Status](https://gemnasium.com/hopsoft/perm.svg)](https://gemnasium.com/hopsoft/perm)
 [![Code Climate](https://codeclimate.com/github/hopsoft/perm/badges/gpa.svg)](https://codeclimate.com/github/hopsoft/perm)
 [![Travis CI](https://travis-ci.org/hopsoft/perm.svg)](https://travis-ci.org/hopsoft/perm)
 [![Coverage Status](https://img.shields.io/coveralls/hopsoft/perm.svg)](https://coveralls.io/r/hopsoft/perm?branch=master)
-[![Lines of Code](http://img.shields.io/badge/loc-29-brightgreen.svg)](http://blog.codinghorror.com/the-best-code-is-no-code-at-all/)
 
 ## Quickstart
 
@@ -14,7 +15,9 @@ gem install perm
 ```
 
 We'll use a contrived example of users & posts to demonstrate permission management.
-_Note that the user class includes `Roleup::HasRoles`_
+
+This example uses [Roleup](https://github.com/hopsoft/roleup) for simple role management & verification,
+but Roleup is not required.
 
 ```ruby
 class User
@@ -34,7 +37,15 @@ end
 ```
 
 We also need an authorizer to manage permissions.
-Authorizors wrap users & add behavior to them.
+
+Authorizers do the following.
+
+- wrap user objects
+- add behavior to wrapped users
+- respond to permissioning methods in the form of `can_OPERATION?`
+- are secure by default
+
+_Which permissioning methods you choose to suppport is up to you._
 
 ```ruby
 class PostAuthorizer < Perm::Authorizer
@@ -100,4 +111,8 @@ drew.can_update?(post) # => false
 drew.can_delete?(post) # => false
 post.published = true
 drew.can_read?(post) # => true
+
+# we can also check unimplemented permissions
+mary.can_create?(post) # => false
+john.can_view?(post) # => false
 ```

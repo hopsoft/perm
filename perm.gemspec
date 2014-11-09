@@ -14,8 +14,8 @@ Gem::Specification.new do |spec|
   spec.files = Dir["lib/**/*.rb", "[A-Z].*"]
   spec.test_files = Dir["test/**/*.rb"]
 
-  spec.add_dependency "roleup"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "roleup"
   spec.add_development_dependency "micro_test"
   spec.add_development_dependency "simplecov"
   spec.add_development_dependency "coveralls"

@@ -60,6 +60,12 @@ module Perm
       @post.user = beth
     end
 
+    test "authorizers respond to all can_*? methods" do
+      assert @mary.respond_to?(:can_perform_magic?)
+      assert !@mary.can_perform_magic?
+      assert !@mary.respond_to?(:can_do_anything)
+    end
+
     test "mary can read" do
       assert @mary.can_read?(@post)
     end
