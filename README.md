@@ -2,7 +2,7 @@
 
 Incredibly simple permission management i.e. authorization.
 
-[![Lines of Code](http://img.shields.io/badge/loc-29-brightgreen.svg)](http://blog.codinghorror.com/the-best-code-is-no-code-at-all/)
+[![Lines of Code](http://img.shields.io/badge/loc-49-brightgreen.svg)](http://blog.codinghorror.com/the-best-code-is-no-code-at-all/)
 [![Dependency Status](https://gemnasium.com/hopsoft/perm.svg)](https://gemnasium.com/hopsoft/perm)
 [![Code Climate](https://codeclimate.com/github/hopsoft/perm/badges/gpa.svg)](https://codeclimate.com/github/hopsoft/perm)
 [![Travis CI](https://travis-ci.org/hopsoft/perm.svg)](https://travis-ci.org/hopsoft/perm)
@@ -47,19 +47,19 @@ _Which permissioning methods you choose to suppport is up to you._
 ```ruby
 class PostAuthorizer < Perm::Authorizer
   def can_read?(post)
-    return true if user.has_one_role?(:admin, :editor)
+    return true if post.published
     return true if user == post.user
-    post.published
+    user.has_one_role?(:admin, :editor)
   end
 
   def can_update?(post)
-    return true if user.has_one_role?(:admin, :editor)
-    user == post.user
+    return true if user == post.user
+    user.has_one_role?(:admin, :editor)
   end
 
   def can_delete?(post)
-    return true if user.has_role?(:admin)
-    user == post.user
+    return true if user == post.user
+    user.has_role?(:admin)
   end
 end
 ```
@@ -129,4 +129,114 @@ drew.can_read?(post) # => true
 # we can also check unimplemented permissions
 mary.can_create?(post) # => false
 john.can_view?(post) # => false
+```
+
+## Rails Example
+
+This example uses a Rails model for role management instead of Roleup.
+
+Continuing with the example users & posts example...
+your directory structure should look something like this.
+
+_Note that only the structure required for the example is shown._
+
+```
++- app
+| +- authorizers
+| | +- post_authorizer.rb
+| +- controllers.rb
+| | +- posts_controller.rb
+| +- models
+| | +- post.rb
+| | +- role.rb
+| | +- user.rb
+```
+
+#### Models
+
+```ruby
+class User < ActiveRecord::Base
+  has_many :posts
+  has_and_belongs_to_many :roles
+
+  def role_names
+    roles.map(&:name)
+  end
+end
+```
+
+```ruby
+class Role < ActiveRecord::Base
+  has_and_belongs_to_many :users
+  validates :name, presence: true
+end
+```
+
+```ruby
+class Post < ActiveRecord::Base
+  belongs_to :user
+end
+```
+
+#### Authorizer
+
+```ruby
+class PostAuthorizer < Perm::Authorizer
+  def can_read?(post)
+    return true if post.published?
+    return true if user == post.user
+    (user.role_names & ["Adminstrator", "Editor"]).present?
+  end
+
+  def can_update?(post)
+    return true if user == post.user
+    (user.role_names & ["Adminstrator", "Editor"]).present?
+  end
+
+  def can_delete?(post)
+    return true if user == post.user
+    user.role_names.include?("Adminstrator")
+  end
+end
+```
+
+#### Controller
+
+```ruby
+class PostsController < ApplicationController
+  include Perm::HasAuthorizer
+  authorizes_with PostAuthorizer, :current_user
+
+  # note: current_user would typically be handled by a library like devise
+  def current_user
+    @current_user ||= User.find(session[:user_id])
+  end
+
+  def show
+    post = Post.find(params[:id])
+    if authorized_user.can_read?(post)
+      # render post
+    else
+      # render unauthorized
+    end
+  end
+
+  def update
+    post = Post.find(params[:id])
+    if authorized_user.can_update?(post)
+      # render post
+    else
+      # render unauthorized
+    end
+  end
+
+  def delete
+    post = Post.find(params[:id])
+    if authorized_user.can_delete?(post)
+      # render post
+    else
+      # render unauthorized
+    end
+  end
+end
 ```

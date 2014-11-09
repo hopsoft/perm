@@ -1,11 +1,4 @@
-require "simplecov"
-require 'coveralls'
-
-SimpleCov.start
-SimpleCov.command_name "mt"
-Coveralls.wear!
-
-require_relative "../lib/perm"
+require_relative "test_helper"
 
 module Perm
   class AuthorizerTest < MicroTest::Test
