@@ -140,15 +140,15 @@ your directory structure should look something like this.
 _Note that only the structure required for the example is shown._
 
 ```
-+- app
-| +- authorizers
-| | +- post_authorizer.rb
-| +- controllers.rb
-| | +- posts_controller.rb
-| +- models
-| | +- post.rb
-| | +- role.rb
-| | +- user.rb
+|- app
+  |- authorizers
+    |- post_authorizer.rb
+  |- controllers.rb
+    |- posts_controller.rb
+  |- models
+    |- post.rb
+    |- role.rb
+    |- user.rb
 ```
 
 #### Models
@@ -214,7 +214,7 @@ class PostsController < ApplicationController
   def show
     post = Post.find(params[:id])
     if authorized_user.can_read?(post)
-      # render post
+      # render show
     else
       # render unauthorized
     end
@@ -223,7 +223,7 @@ class PostsController < ApplicationController
   def update
     post = Post.find(params[:id])
     if authorized_user.can_update?(post)
-      # render post
+      # render update
     else
       # render unauthorized
     end
@@ -232,7 +232,7 @@ class PostsController < ApplicationController
   def delete
     post = Post.find(params[:id])
     if authorized_user.can_delete?(post)
-      # render post
+      # render delete
     else
       # render unauthorized
     end
