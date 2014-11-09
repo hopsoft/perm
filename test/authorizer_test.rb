@@ -66,6 +66,10 @@ module Perm
       assert !@mary.respond_to?(:can_do_anything)
     end
 
+    test "authorizers forward non-can_*? messages to wrapped object" do
+      assert @mary.posts.is_a?(Array)
+    end
+
     test "mary can read" do
       assert @mary.can_read?(@post)
     end
