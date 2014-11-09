@@ -41,9 +41,9 @@ module Perm
     end
 
     before do
-      mary = User.new
-      mary.roles = [:admin]
-      @mary = PostAuthorizer.new(mary)
+      @umary = User.new
+      @umary.roles = [:admin]
+      @mary = PostAuthorizer.new(@umary)
 
       john = User.new
       john.roles = [:editor, :writer]
@@ -58,12 +58,17 @@ module Perm
       @post = Post.new
       @post.title = "Authorization made easy"
       @post.user = beth
+      beth.posts << @post
     end
 
     test "authorizers respond to all can_*? methods" do
       assert @mary.respond_to?(:can_perform_magic?)
       assert !@mary.can_perform_magic?
       assert !@mary.respond_to?(:can_do_anything)
+    end
+
+    test "authorizers expose the wrapped user" do
+      assert @mary.user == @umary
     end
 
     test "authorizers forward non-can_*? messages to wrapped object" do

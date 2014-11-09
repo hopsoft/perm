@@ -68,8 +68,9 @@ end
 
 Lets try it out.
 
+#### Create some users with roles
+
 ```ruby
-# create some users with roles
 mary = User.new
 mary.roles = [:admin]
 
@@ -80,19 +81,34 @@ beth = User.new
 beth.roles = [:writer]
 
 drew = User.new
+```
 
-# create a post
+#### Create a post
+
+```ruby
 post = Post.new
 post.title = "Authorization made easy"
 post.user = beth
+beth.posts << post
+```
 
-# wrap each user with an authorizer
+#### Wrap each user with an authorizer
+```ruby
 mary = PostAuthorizer.new(mary)
 john = PostAuthorizer.new(john)
 beth = PostAuthorizer.new(beth)
 drew = PostAuthorizer.new(drew)
 
-# check permissions
+# wrapped users continue to act like users
+beth.posts # => [#<Post:0x007fe35d081798 @title="Authorization made easy"...
+
+# if conflicts arise, simply access the original
+beth.user
+```
+
+#### Check permissions
+
+```ruby
 mary.can_read?(post) # => true
 mary.can_update?(post) # => true
 mary.can_delete?(post) # => true
