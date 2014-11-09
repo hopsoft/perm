@@ -23,7 +23,7 @@ _This example uses [Roleup](https://github.com/hopsoft/roleup) for simple role m
 ```ruby
 class User
   include Roleup::HasRoles
-  attr_reader :posts
+  attr_accessor :posts
 end
 ```
 
