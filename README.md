@@ -133,11 +133,10 @@ john.can_view?(post) # => false
 
 ## Rails Example
 
-This example uses a Rails model for role management instead of Roleup.
+_This example uses a Rails model for role management instead of Roleup._
 
 Continuing with the example users & posts example...
 your directory structure should look something like this.
-
 _Note that only the structure required for the example is shown._
 
 ```
