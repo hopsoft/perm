@@ -24,10 +24,6 @@ _This example uses [Roleup](https://github.com/hopsoft/roleup) for simple role m
 class User
   include Roleup::HasRoles
   attr_reader :posts
-
-  def initialize
-    @posts = []
-  end
 end
 ```
 
@@ -81,6 +77,7 @@ john.roles = [:editor, :writer]
 
 beth = User.new
 beth.roles = [:writer]
+beth.posts = []
 
 drew = User.new
 ```
