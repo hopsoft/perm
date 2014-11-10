@@ -3,9 +3,9 @@
 Incredibly simple permission management i.e. authorization.
 
 [![Lines of Code](http://img.shields.io/badge/loc-49-brightgreen.svg)](http://blog.codinghorror.com/the-best-code-is-no-code-at-all/)
+[![Code Status](https://codeclimate.com/github/hopsoft/perm/badges/gpa.svg)](https://codeclimate.com/github/hopsoft/perm)
 [![Dependency Status](https://gemnasium.com/hopsoft/perm.svg)](https://gemnasium.com/hopsoft/perm)
-[![Code Climate](https://codeclimate.com/github/hopsoft/perm/badges/gpa.svg)](https://codeclimate.com/github/hopsoft/perm)
-[![Travis CI](https://travis-ci.org/hopsoft/perm.svg)](https://travis-ci.org/hopsoft/perm)
+[![Build Status](https://travis-ci.org/hopsoft/perm.svg)](https://travis-ci.org/hopsoft/perm)
 [![Coverage Status](https://img.shields.io/coveralls/hopsoft/perm.svg)](https://coveralls.io/r/hopsoft/perm?branch=master)
 
 ## Quickstart
