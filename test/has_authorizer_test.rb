@@ -1,7 +1,7 @@
 require_relative "test_helper"
 
 module Perm
-  class HasAuthorizerTest < MicroTest::Test
+  class HasAuthorizerTest < PryTest::Test
 
     class ExampleAuthorizer < Authorizer
       def can_view?(object)

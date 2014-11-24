@@ -1,7 +1,7 @@
 require_relative "test_helper"
 
 module Perm
-  class AuthorizerTest < MicroTest::Test
+  class AuthorizerTest < PryTest::Test
     class User
       include Roleup::HasRoles
       attr_reader :posts
