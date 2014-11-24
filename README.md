@@ -1,12 +1,13 @@
+[![Lines of Code](http://img.shields.io/badge/lines_of_code-73-brightgreen.svg?style=flat)](http://blog.codinghorror.com/the-best-code-is-no-code-at-all/)
+[![Code Status](http://img.shields.io/codeclimate/github/hopsoft/perm.svg?style=flat)](https://codeclimate.com/github/hopsoft/perm)
+[![Dependency Status](http://img.shields.io/gemnasium/hopsoft/perm.svg?style=flat)](https://gemnasium.com/hopsoft/perm)
+[![Build Status](http://img.shields.io/travis/hopsoft/perm.svg?style=flat)](https://travis-ci.org/hopsoft/perm)
+[![Coverage Status](https://img.shields.io/coveralls/hopsoft/perm.svg?style=flat)](https://coveralls.io/r/hopsoft/perm?branch=master)
+[![Downloads](http://img.shields.io/gem/dt/perm.svg?style=flat)](http://rubygems.org/gems/perm)
+
 # Perm
 
 Incredibly simple permission management i.e. authorization.
-
-[![Lines of Code](http://img.shields.io/badge/loc-49-brightgreen.svg)](http://blog.codinghorror.com/the-best-code-is-no-code-at-all/)
-[![Code Status](https://codeclimate.com/github/hopsoft/perm/badges/gpa.svg)](https://codeclimate.com/github/hopsoft/perm)
-[![Dependency Status](https://gemnasium.com/hopsoft/perm.svg)](https://gemnasium.com/hopsoft/perm)
-[![Build Status](https://travis-ci.org/hopsoft/perm.svg)](https://travis-ci.org/hopsoft/perm)
-[![Coverage Status](https://img.shields.io/coveralls/hopsoft/perm.svg)](https://coveralls.io/r/hopsoft/perm?branch=master)
 
 ## Quickstart
 
