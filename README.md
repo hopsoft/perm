@@ -93,10 +93,10 @@ post = Post.new(user: beth, title: "Authorization made easy")
 
 #### Wrap each user with an authorizer
 ```ruby
-authorized_mary = PostAuthorizer.new(mary)
-authorized_john = PostAuthorizer.new(john)
-authorized_beth = PostAuthorizer.new(beth)
-authorized_drew = PostAuthorizer.new(drew)
+authorized_mary = AuthorizedUser.new(mary)
+authorized_john = AuthorizedUser.new(john)
+authorized_beth = AuthorizedUser.new(beth)
+authorized_drew = AuthorizedUser.new(drew)
 
 # wrapped users continue to act like users
 authorized_beth.posts # => [#<Post:0x007fe35d081798 @title="Authorization made easy"...
