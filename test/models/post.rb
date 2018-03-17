@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Post
   attr_reader :user, :title
   attr_accessor :published
