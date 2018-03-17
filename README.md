@@ -46,21 +46,23 @@ end
 Once our basic classes have be defined, we can create an authorized user to manage permissions.
 
 ```ruby
-class PostAuthorizer < Perm::Authorizer
+class AuthorizedUser < Perm::Authorized
   def can_read?(post)
-    return true if post.published
+    return true if user.roles.include?(:admin)
+    return true if user.roles.include?(:editor)
     return true if user == post.user
-    user.has_one_role?(:admin, :editor)
+    post.published
   end
 
   def can_update?(post)
-    return true if user == post.user
-    user.has_one_role?(:admin, :editor)
+    return true if user.roles.include?(:admin)
+    return true if user.roles.include?(:editor)
+    user == post.user
   end
 
   def can_delete?(post)
-    return true if user == post.user
-    user.has_role?(:admin)
+    return true if user.roles.include?(:admin)
+    user == post.user
   end
 end
 ```
