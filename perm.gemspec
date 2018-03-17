@@ -15,7 +15,6 @@ Gem::Specification.new do |spec|
   spec.test_files = Dir["test/**/*.rb"]
 
   spec.add_development_dependency "rake"
-  spec.add_development_dependency "roleup"
   spec.add_development_dependency "pry-test"
   spec.add_development_dependency "coveralls"
 end
