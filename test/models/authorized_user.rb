@@ -1,3 +1,5 @@
+require_relative "../../lib/perm"
+
 class AuthorizedUser < Perm::Authorized
   def can_read?(post)
     return true if user.roles.include?(:admin)
