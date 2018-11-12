@@ -34,8 +34,8 @@ module Perm
       assert !@authorized_mary.respond_to?(:can_do_anything)
     end
 
-    test "authorizers expose the wrapped user" do
-      assert @authorized_mary.user == @mary
+    test "authorizers expose the wrapped subject" do
+      assert @authorized_mary.subject == @mary
     end
 
     test "authorizers forward non-can_*? messages to wrapped object" do
