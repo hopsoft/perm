@@ -2,11 +2,17 @@
 require "delegate"
 
 class Perm::Authorized < SimpleDelegator
-  attr_reader :user
+  attr_reader :subject
 
-  def initialize(user)
-    raise ArgumentError.new("user cannot be nil") if user.nil?
-    super @user = user
+  def initialize(subject)
+    raise ArgumentError.new("subject cannot be nil") if subject.nil?
+    super @subject = subject
+  end
+
+  # @deprecated Please use #subject instead
+  def user
+    warn "The #user method has been deprecated in favor of #subject"
+    subject
   end
 
   def method_missing(name, *args)
